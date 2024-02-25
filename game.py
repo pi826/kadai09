@@ -33,13 +33,6 @@ def shuffle_patches(image, patch_size):
     shuffled_image = np.vstack([np.hstack(patches[i*w//patch_size:(i+1)*w//patch_size]) for i in range(h//patch_size)])
     return shuffled_image
 
-def patches(image, patch_size):
-    h, w, _ = image.shape
-    # 正方形のパッチに分割
-    patches = [image[i:i+patch_size, j:j+patch_size] for i in range(0, h, patch_size) for j in range(0, w, patch_size)]
-
-    return patches
-
 def find_black_patch(image, patch_size):
     h, w, _ = image.shape
     # 正方形のパッチに分割し、各パッチが全て0（黒）であるかどうかチェック
@@ -142,13 +135,8 @@ class GameWindow(Qw.QWidget):
     
     def mouseDoubleClickEvent(self,e):
         p = e.position() # マウスがダブルクリックされた場所
-        print(p.x() + 15,p.y() + 15)
         black_patch_pos = find_black_patch(img,patch_size)
-        # print(img[black[0]:black[0]+patch_size,black[1]:black[1]+patch_size])
-        game = patches(img,patch_size)
-        print(black_patch_pos)
         patch_pos = (int(p.y()) // patch_size * patch_size , int(p.x()) // patch_size * patch_size)
-        print(patch_pos)
         # パッチを一時変数に保存
         temp = img[patch_pos[0]:patch_pos[0]+patch_size, patch_pos[1]:patch_pos[1]+patch_size].copy()
 

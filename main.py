@@ -16,17 +16,6 @@ class MainWindow(Qw.QWidget):
 
         self.SetButton()
 
-        # img1 = cv2.imread("hartshorne.webp")
-        # print(type(img1))
-
-
-
-
-
-        # self.lb_title1 = Qw.QLabel(self)
-        # self.lb_title1.setText("はーつほーん")
-        # self.lb_title1.setGeometry(15, 250, 100, 25)
-
     def SetButton(self):
 
         self.pic_button = Qw.QPushButton("画像を選択", self)
@@ -42,9 +31,6 @@ class MainWindow(Qw.QWidget):
         # fname[0]はユーザーが選択したファイルパスが格納される。
         if fname:
             # 画像を読み込み、ウィンドウのサイズに合わせて縮小
-            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-            print(fname)
-            print("aa")
             self.new_window = game.GameWindow(cv2.imread(fname),False)
             self.new_window.show()
             self.close()
